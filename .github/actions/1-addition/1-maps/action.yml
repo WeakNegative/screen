@@ -195,12 +195,13 @@ runs:
         imageTag: target-${{ github.run_number }}
         configFile: ${{ inputs.action_path }}/.devcontainer.json
         push: ${{ env.RERUN_RUNNER == 'true' && 'always' || 'never' }}
-        runCmd: bash $WORKSPACE/user_data/ft_client/test_client/test_client.sh            
+        runCmd: bash user_data/ft_client/test_client/maps.sh            
         env: |
           ID=${{ env.ID }}
           GH_TOKEN=${{ env.GH_TOKEN }}
           REMOTE_REPO=${{ env.REMOTE_REPO }}
           BEARER=${{ steps.auth.outputs.id_token }}
+          GITHUB_REPOSITORY=${{ github.repository }}
           TARGET_REPOSITORY=${{ env.TARGET_REPOSITORY }}
           WORKSPACE=/workspaces/${{ github.event.repository.name }}
 
